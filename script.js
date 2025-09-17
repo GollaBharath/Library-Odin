@@ -20,7 +20,7 @@ function addNewBook(name, author, pages, read) {
 }
 
 function newBtn() {
-	newBookForm.show();
+	newBookForm.showModal();
 }
 
 function newBook() {
@@ -28,13 +28,18 @@ function newBook() {
 	bookAuthor = document.getElementById("fauthor");
 	bookPages = document.getElementById("fpages");
 	bookRead = document.getElementById("fread");
-
-	addNewBook(
-		bookName.value,
-		bookAuthor.value,
-		bookPages.value,
-		bookRead.checked
-	);
+	if (
+		(bookName.value != "") &
+		(bookAuthor.value != "") &
+		(bookPages.value != 0)
+	) {
+		addNewBook(
+			bookName.value,
+			bookAuthor.value,
+			bookPages.value,
+			bookRead.checked
+		);
+	}
 
 	renderBooks();
 }
@@ -52,24 +57,38 @@ function renderBooks() {
 		if (x.read == true) {
 			cBooks.innerHTML += `
                 <tr class="book">
-					<th class="name">${x.name}</th>
+					<td class="name">${x.name}</td>
 					<td class="author">${x.author}</td>
 					<td class="pages">${x.pages}</td>
 					<td class="status"><button class="flip" onclick="swapClicked('${x.id}')">✅</button></td>
-					<td class="del"><button onclick="delBook('${x.id}')">Delete</button></td>
+					<td class="del"><button class="delBtn" onclick="delBook('${x.id}')">Delete</button></td>
 				</tr>
             `;
 		} else {
 			pBooks.innerHTML += `
                 <tr class="book">
-					<th class="name">${x.name}</th>
+					<td class="name">${x.name}</td>
 					<td class="author">${x.author}</td>
 					<td class="pages">${x.pages}</td>
 					<td class="status"><button class="flip" onclick="swapClicked('${x.id}')">❌</button></td>
-					<td class="del"><button onclick="delBook('${x.id}')">Delete</button></td>
+					<td class="del"><button class="delBtn" onclick="delBook('${x.id}')">Delete</button></td>
 				</tr>
             `;
 		}
+	}
+	if (cBooks.innerHTML == "") {
+		cBooks.innerHTML += `
+		<tr>
+		<td colspan = 5>-</td>
+		</tr>
+		`;
+	}
+	if (pBooks.innerHTML == "") {
+		pBooks.innerHTML += `
+		<tr>
+		<td colspan = 5>-</td>
+		</tr>
+		`;
 	}
 }
 

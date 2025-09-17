@@ -8,7 +8,7 @@
 		<script src="./script.js" defer></script>
 	</head>
 	<body>
-		<h1>Library Management System</h1>
+		<p class="hed">Library Management System</p>
 		<table>
 			<caption>
 				Books Already Read
@@ -19,7 +19,7 @@
 					<th>Author</th>
 					<th>No. of Pages</th>
 					<th>Status</th>
-					<th>⚙️</th>
+					<th>Remove Book</th>
 				</tr>
 			</thead>
 			<tbody class="c-books"></tbody>
@@ -34,25 +34,30 @@
 					<th>Author</th>
 					<th>No. of Pages</th>
 					<th>Status</th>
-					<th>⚙️</th>
+					<th>Remove Book</th>
 				</tr>
 			</thead>
 			<tbody class="p-books"></tbody>
 		</table>
-		<button onclick="newBtn()">New</button>
+		<button onclick="newBtn()" class="newBtn">Add New Book</button>
 		<dialog class="newBookForm" close>
-			<p>Add a new Book</p>
+			<p class="hed">Add a new Book</p>
 			<form method="dialog">
 				<label for="fname"
-					><input type="text" id="fname" placeholder="Book Name" required
+					>Book Name :
+					<input type="text" id="fname" placeholder="Book Name" required
 				/></label>
 				<label for="fauthor"
-					><input type="text" id="fauthor" placeholder="Author Name" required
+					>Book's Author :
+					<input type="text" id="fauthor" placeholder="Author Name" required
 				/></label>
 				<label for="fpages"
-					><input type="number" id="fpages" placeholder="No. of Pages" required
+					>No. of Pages :
+					<input type="number" id="fpages" placeholder="No. of Pages" required
 				/></label>
-				<label for="fread"><input type="checkbox" id="fread" /></label>
+				<label for="fread"
+					>I have read this book <input type="checkbox" id="fread"
+				/></label>
 				<button onclick="newBook()">OK</button>
 			</form>
 		</dialog>
